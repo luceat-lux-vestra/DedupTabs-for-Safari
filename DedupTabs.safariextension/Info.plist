@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>Heath Lucas Kim</string>
+	<key>Builder Version</key>
+	<string>12603.2.4</string>
+	<key>CFBundleDisplayName</key>
+	<string>DedupTabs</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.LucasArts.deduptabs</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2017.06.06</string>
+	<key>CFBundleVersion</key>
+	<string>0.0.1</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Global Page</key>
+		<string>global.html</string>
+		<key>Toolbar Items</key>
+		<array>
+			<dict>
+				<key>Identifier</key>
+				<string>DedupTabs</string>
+				<key>Image</key>
+				<string>toolbar-icon.png</string>
+				<key>Include By Default</key>
+				<true/>
+				<key>Label</key>
+				<string>DedupTabs</string>
+				<key>Palette Label</key>
+				<string>DedupTabs</string>
+				<key>Tool Tip</key>
+				<string>You don't have to worry about duplicated tabs! I'll take care of it for you!</string>
+			</dict>
+		</array>
+	</dict>
+	<key>Description</key>
+	<string>It'll automatically close duplicated tabs for you!</string>
+	<key>DeveloperIdentifier</key>
+	<string>0000000000</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

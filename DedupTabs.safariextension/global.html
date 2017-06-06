@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>DedupTabs</title>
+<script>
+
+	(function() {
+		'use strict';
+
+		safari.application.addEventListener('beforeNavigate', function(event) {
+			var browserWindows = safari.application.browserWindows;
+
+			for(var i = 0; i < browserWindows.length; i++){
+
+			    var tabs = browserWindows[i].tabs;
+
+			    for(var j = 0; j < tabs.length; j++){
+			         var tab = tabs[j];
+
+			         if(tab.url === event.url) {
+						 event.preventDefault();
+						 event.target.close();
+						 console.log("Closing" + event.target);
+					 }
+			    }
+			}
+
+		}, true);
+
+	})();
+</script>
