@@ -2,29 +2,54 @@
 <meta charset="utf-8">
 <title>DedupTabs</title>
 <script>
+	'use strict';
 
-	(function() {
-		'use strict';
+	let tabMap = new Map();
 
-		safari.application.addEventListener('beforeNavigate', function(event) {
+	var nTimes = 0;
+
+	function navigateHandler(event) {
+		// if(event.target.url === '')
+		// 	return ;
+		//console.log(event.target.url + "times " + (nTimes++));
+
+		var activeTab = safari.application.activeBrowserWindow.activeTab;
+		var targetTab = event.target;
+
+		if(activeTab !== targetTab) {
 			var browserWindows = safari.application.browserWindows;
 
-			for(var i = 0; i < browserWindows.length; i++){
+			for(var i = 0; i < browserWindows.length; i++) {
+				var tabs = browserWindows[i].tabs;
 
-			    var tabs = browserWindows[i].tabs;
+				for(var j = 0; j < tabs.length; j++) {
+					if(tabs[j] === activeTab || tabs[j] === targetTab)
+						continue;
 
-			    for(var j = 0; j < tabs.length; j++){
-			         var tab = tabs[j];
-
-			         if(tab.url === event.url) {
-						 event.preventDefault();
-						 event.target.close();
-						 console.log("Closing" + event.target);
-					 }
-			    }
+					if(tabs[j].url === targetTab.url) {
+						tabs[j].close()
+						return ;
+					}
+				}
 			}
+		}
+		//console.log(activeTab.url);
+	}
 
-		}, true);
+	// function closeHandler(event) {
+	// 	console.log("close : " + event.url);
+	//
+	// 	var url = event.url;
+	// 	var tab = event.target;
+	//
+	// 	if(tabMap.has(url)) {
+	// 		if(tab == tabmap.get(url))
+	// 			tabMap.delete(url);
+	// 	}
+	// }
 
-	})();
+	safari.application.addEventListener('navigate', navigateHandler, false);
+	//safari.application.addEventListener('close', closeHandler, true);
+
+	//safari.application.addEventListener('activate', handleCommand, true);
 </script>
