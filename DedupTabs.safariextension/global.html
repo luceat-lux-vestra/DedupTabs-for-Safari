@@ -9,47 +9,41 @@
 	var nTimes = 0;
 
 	function navigateHandler(event) {
-		// if(event.target.url === '')
-		// 	return ;
-		//console.log(event.target.url + "times " + (nTimes++));
+		if(event.target.url === '')
+			return ;
+		console.log(event.target.url + "times " + (nTimes++));
 
 		var activeTab = safari.application.activeBrowserWindow.activeTab;
 		var targetTab = event.target;
 
-		if(activeTab !== targetTab) {
+		//if(activeTab !== targetTab) {
 			var browserWindows = safari.application.browserWindows;
 
 			for(var i = 0; i < browserWindows.length; i++) {
+				// if(browserWindows[i] == safari.application.activeBrowserWindow)
+				// 	console.log("active window index : " + i);
+				// else {
+				// 	console.log("window index : " + i);
+				// }
+
 				var tabs = browserWindows[i].tabs;
 
-				for(var j = 0; j < tabs.length; j++) {
+				// traverse in reverse order because tabs returns the array from left to right.
+				for(var j = tabs.length - 1; j >= 0; j--) {
 					if(tabs[j] === activeTab || tabs[j] === targetTab)
 						continue;
 
 					if(tabs[j].url === targetTab.url) {
+						//console.log("close index : " + j);
 						tabs[j].close()
-						return ;
+						//return ;
 					}
 				}
 			}
-		}
+		//}
 		//console.log(activeTab.url);
 	}
 
-	// function closeHandler(event) {
-	// 	console.log("close : " + event.url);
-	//
-	// 	var url = event.url;
-	// 	var tab = event.target;
-	//
-	// 	if(tabMap.has(url)) {
-	// 		if(tab == tabmap.get(url))
-	// 			tabMap.delete(url);
-	// 	}
-	// }
-
 	safari.application.addEventListener('navigate', navigateHandler, false);
-	//safari.application.addEventListener('close', closeHandler, true);
 
-	//safari.application.addEventListener('activate', handleCommand, true);
 </script>
